@@ -19,6 +19,7 @@ pipeline {
         stage('Tests Unitaires') {
             steps {
                 echo 'Lancement des tests unitaires...'
+                sh 'chmod +x mvnw'
                 sh './mvnw test'
             }
             post {
