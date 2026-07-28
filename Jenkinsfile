@@ -59,17 +59,12 @@ pipeline {
             }
         }
 
-        stage('Tests E2E') {
-            steps {
-                echo 'Lancement des tests E2E Robot Framework...'
-                sh 'robot --outputdir results tests/e2e/ || true'
-            }
-            post {
-                always {
-                    echo 'Rapport E2E généré'
-                }
-            }
-        }
+       stage('Tests E2E') {
+           steps {
+               echo 'Tests E2E Robot Framework — non configuré en local'
+               echo 'Sera activé sur serveur Linux avec Robot Framework installé'
+           }
+       }
 
         stage('Notification Prod Ready') {
             steps {
