@@ -32,6 +32,21 @@ pipeline {
             }
         }
 
+        stage('Tests Integration') {
+            steps {
+                echo 'Lancement des tests d intégration...'
+                sh './mvnw verify -Dtest=PatientRepositoryIntegrationTest'
+            }
+            post {
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+                failure {
+                    echo 'Tests d intégration échoués — pipeline arrêté'
+                }
+            }
+        }
+
         stage('Quality Gate') {
             steps {
                 echo 'Vérification de la couverture de code...'
